@@ -1,4 +1,4 @@
-package com.moviehub.repository;
+package com.moviehub.repository.genre;
 
 import com.moviehub.model.entity.genre.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;

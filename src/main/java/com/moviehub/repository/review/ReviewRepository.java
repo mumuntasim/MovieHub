@@ -1,4 +1,4 @@
-package com.moviehub.repository;
+package com.moviehub.repository.review;
 
 import com.moviehub.model.entity.review.Review;
 import org.springframework.data.jpa.repository.JpaRepository;

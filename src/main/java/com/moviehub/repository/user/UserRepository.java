@@ -1,4 +1,4 @@
-package com.moviehub.repository;
+package com.moviehub.repository.user;
 
 import com.moviehub.model.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
