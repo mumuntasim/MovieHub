@@ -1,8 +1,10 @@
 package com.moviehub.service.movie;
 
+import com.moviehub.model.dto.movie.MovieAddDTO;
 import com.moviehub.model.entity.movie.Movie;
 import com.moviehub.repository.movie.MovieRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -16,5 +18,14 @@ public class MovieService {
 
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();
+    }
+
+    public void addMovie(MovieAddDTO movieAddDTO) {
+        Movie movie = new Movie();
+        movie.setTitle(movieAddDTO.getTitle());
+        movie.setDescription(movieAddDTO.getDescription());
+        movie.setReleaseDate(movieAddDTO.getReleaseDate());
+
+        movieRepository.save(movie);
     }
 }

@@ -1,7 +1,5 @@
 package com.moviehub.service.user;
 
-
-
 import com.moviehub.model.dto.user.UserRegisterDTO;
 import com.moviehub.model.entity.user.User;
 import com.moviehub.model.entity.user.UserRole;
