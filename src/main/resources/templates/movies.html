@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" data-bs-theme="dark">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <title>Explore Movies - MovieHub</title>
+    <title>Movies - MovieHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #0f0f0f; }
@@ -14,9 +16,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary mb-5">
     <div class="container">
         <a class="navbar-brand fw-bold text-primary" href="/">🎬 MovieHub</a>
-        <div class="d-flex">
-            <a class="btn btn-outline-light me-2" href="/movies">Explore</a>
-            <a class="btn btn-primary" href="/register">Join</a>
+
+        <div class="d-flex align-items-center">
+            <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
+
+                <form th:action="@{/logout}" method="POST" class="m-0">
+                    <button type="submit" class="btn btn-outline-danger btn-sm fw-bold">Logout</button>
+                </form>
+            </div>
+
+            <div sec:authorize="isAnonymous()">
+            </div>
         </div>
     </div>
 </nav>
@@ -24,9 +34,8 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-white">Trending Movies</h2>
-        <div>
-            <a href="/movies/add" class="btn btn-success fw-bold px-4 rounded-pill me-2">+ Add New Movie</a>
-            <span class="badge bg-primary rounded-pill px-3 py-2">Premium Collection</span>
+        <div sec:authorize="isAuthenticated()">
+            <a href="/movies/add" class="btn btn-success fw-bold px-4 rounded-pill">+ Add New Movie</a>
         </div>
     </div>
 
@@ -47,7 +56,6 @@
                         <h4 class="mb-0">No movies found in the database yet.</h4>
                     </td>
                 </tr>
-
                 <tr th:each="movie : ${movies}">
                     <td class="ps-4 py-3 fw-bold text-white" th:text="${movie.title}">Title</td>
                     <td class="py-3 text-secondary" style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" th:text="${movie.description}">Description</td>

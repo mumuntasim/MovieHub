@@ -25,7 +25,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/movies?logout=true")
+                        .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
                 );
 

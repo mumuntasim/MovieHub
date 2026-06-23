@@ -28,7 +28,7 @@ public class Movie {
     @Column(nullable = false)
     private LocalDate releaseDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
 }

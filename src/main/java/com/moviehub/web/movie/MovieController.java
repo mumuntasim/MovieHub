@@ -51,6 +51,6 @@ public class MovieController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/movies";
+        return "redirect:/login";
     }
 }
