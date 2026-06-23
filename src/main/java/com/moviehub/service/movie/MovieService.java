@@ -6,6 +6,7 @@ import com.moviehub.repository.movie.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MovieService {
@@ -28,4 +29,10 @@ public class MovieService {
 
         movieRepository.save(movie);
     }
+
+    public void deleteMovie(UUID id) {
+        movieRepository.deleteById(id);
+    }
+
+
 }

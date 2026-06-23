@@ -18,15 +18,13 @@
         <a class="navbar-brand fw-bold text-primary" href="/">🎬 MovieHub</a>
 
         <div class="d-flex align-items-center">
+            <!-- Блок за логнати потребители -->
             <div sec:authorize="isAuthenticated()" class="d-flex align-items-center">
-
                 <form th:action="@{/logout}" method="POST" class="m-0">
                     <button type="submit" class="btn btn-outline-danger btn-sm fw-bold">Logout</button>
                 </form>
             </div>
 
-            <div sec:authorize="isAnonymous()">
-            </div>
         </div>
     </div>
 </nav>
@@ -47,12 +45,13 @@
                     <th class="ps-4 py-3">Movie Title</th>
                     <th class="py-3">Synopsis</th>
                     <th class="py-3">Release Date</th>
-                    <th class="pe-4 py-3 text-end">Genre</th>
+                    <th class="py-3">Genre</th>
+                    <th class="pe-4 py-3 text-end" sec:authorize="isAuthenticated()">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:if="${#lists.isEmpty(movies)}">
-                    <td colspan="4" class="text-center py-5 text-muted">
+                    <td colspan="5" class="text-center py-5 text-muted">
                         <h4 class="mb-0">No movies found in the database yet.</h4>
                     </td>
                 </tr>
@@ -60,8 +59,14 @@
                     <td class="ps-4 py-3 fw-bold text-white" th:text="${movie.title}">Title</td>
                     <td class="py-3 text-secondary" style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" th:text="${movie.description}">Description</td>
                     <td class="py-3" th:text="${movie.releaseDate}">Date</td>
-                    <td class="pe-4 py-3 text-end">
+                    <td class="py-3">
                         <span class="badge bg-secondary text-light" th:text="${movie.genre != null ? movie.genre.name : 'Unknown'}">Genre</span>
+                    </td>
+                    <!-- Бутон за изтриване (само за логнати) -->
+                    <td class="pe-4 py-3 text-end" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/movies/delete/{id}(id=${movie.id})}" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
