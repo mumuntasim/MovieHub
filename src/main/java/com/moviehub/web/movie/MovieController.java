@@ -57,11 +57,6 @@ public class MovieController {
         return "redirect:/movies";
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "redirect:/login";
-    }
-
     @PostMapping("/movies/delete/{id}")
     public String deleteMovie(@PathVariable UUID id) {
         movieService.deleteMovie(id);
