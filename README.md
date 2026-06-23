@@ -38,7 +38,9 @@ Configure the Database:
 Open src/main/resources/application.properties and update your MySQL credentials:
 
 Properties
+
 spring.datasource.username=your_db_username
+
 spring.datasource.password=your_db_password
 
 Run the Application:
