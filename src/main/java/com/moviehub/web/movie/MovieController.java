@@ -22,7 +22,6 @@ public class MovieController {
     private final MovieService movieService;
     private final GenreRepository genreRepository; // Добавяме това
 
-    // Добавяме genreRepository в конструктора
     public MovieController(MovieService movieService, GenreRepository genreRepository) {
         this.movieService = movieService;
         this.genreRepository = genreRepository;
@@ -39,7 +38,6 @@ public class MovieController {
         if (!model.containsAttribute("movieAddDTO")) {
             model.addAttribute("movieAddDTO", new MovieAddDTO());
         }
-        // Добавяме жанровете към модела, за да ги види Thymeleaf
         model.addAttribute("allGenres", genreRepository.findAll());
         return "add-movie";
     }
