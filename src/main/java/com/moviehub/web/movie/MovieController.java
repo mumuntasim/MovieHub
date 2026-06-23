@@ -1,6 +1,7 @@
 package com.moviehub.web.movie;
 
 import com.moviehub.model.dto.movie.MovieAddDTO;
+import com.moviehub.model.entity.movie.Movie;
 import com.moviehub.repository.genre.GenreRepository;
 import com.moviehub.service.movie.MovieService;
 import jakarta.validation.Valid;
@@ -66,6 +67,31 @@ public class MovieController {
     @PostMapping("/movies/delete/{id}")
     public String deleteMovie(@PathVariable UUID id) {
         movieService.deleteMovie(id);
+        return "redirect:/movies";
+    }
+
+    @GetMapping("/movies/edit/{id}")
+    public String editMovie(@PathVariable UUID id, Model model) {
+        Movie movie = movieService.getMovieById(id);
+
+        MovieAddDTO dto = new MovieAddDTO();
+        dto.setTitle(movie.getTitle());
+        dto.setDescription(movie.getDescription());
+        dto.setReleaseDate(movie.getReleaseDate());
+        dto.setGenreId(movie.getGenre().getId());
+
+        model.addAttribute("movieAddDTO", dto);
+        model.addAttribute("movieId", id);
+        model.addAttribute("allGenres", genreRepository.findAll());
+        return "edit-movie";
+    }
+
+    @PostMapping("/movies/edit/{id}")
+    public String editMovieConfirm(@PathVariable UUID id, @Valid @ModelAttribute("movieAddDTO") MovieAddDTO movieAddDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "edit-movie";
+        }
+        movieService.updateMovie(id, movieAddDTO);
         return "redirect:/movies";
     }
 }

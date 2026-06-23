@@ -42,4 +42,22 @@ public class MovieService {
     public void deleteMovie(UUID id) {
         movieRepository.deleteById(id);
     }
+
+    public Movie getMovieById(UUID id) {
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Movie not found"));
+    }
+
+    public void updateMovie(UUID id, MovieAddDTO movieAddDTO) {
+        Movie movie = getMovieById(id);
+        movie.setTitle(movieAddDTO.getTitle());
+        movie.setDescription(movieAddDTO.getDescription());
+        movie.setReleaseDate(movieAddDTO.getReleaseDate());
+
+        Genre genre = genreRepository.findById(movieAddDTO.getGenreId())
+                .orElseThrow(() -> new IllegalArgumentException("Genre not found"));
+        movie.setGenre(genre);
+
+        movieRepository.save(movie);
+    }
 }
