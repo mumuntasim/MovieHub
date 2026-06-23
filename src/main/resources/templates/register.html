@@ -26,33 +26,37 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label text-light">First Name</label>
-                                <input type="text" class="form-control bg-dark border-secondary" th:field="*{firstName}" placeholder="John" />
+                                <input type="text" class="form-control bg-dark border-secondary" th:field="*{firstName}" placeholder="John" required />
                             </div>
                             <div class="col">
                                 <label class="form-label text-light">Last Name</label>
-                                <input type="text" class="form-control bg-dark border-secondary" th:field="*{lastName}" placeholder="Doe" />
+                                <input type="text" class="form-control bg-dark border-secondary" th:field="*{lastName}" placeholder="Doe" required />
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label text-light">Username</label>
-                            <input type="text" class="form-control bg-dark border-secondary" th:field="*{username}" placeholder="johndoe123" />
+                            <input type="text" class="form-control bg-dark border-secondary" th:field="*{username}" placeholder="johndoe123" required minlength="3" />
                             <div class="text-warning small mt-1" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label text-light">Email Address</label>
-                            <input type="email" class="form-control bg-dark border-secondary" th:field="*{email}" placeholder="john@example.com" />
+                            <input type="email" class="form-control bg-dark border-secondary" th:field="*{email}" placeholder="john@example.com" required />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label text-light">Password</label>
-                            <input type="password" class="form-control bg-dark border-secondary" th:field="*{password}" placeholder="••••••••" />
+                            <input type="password" class="form-control bg-dark border-secondary" th:field="*{password}" placeholder="••••••••" required minlength="5" />
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label text-light">Confirm Password</label>
-                            <input type="password" class="form-control bg-dark border-secondary" th:field="*{confirmPassword}" placeholder="••••••••" />
+                            <input type="password" class="form-control bg-dark border-secondary" th:field="*{confirmPassword}" placeholder="••••••••" required minlength="5" />
+                        </div>
+
+                        <div th:if="${passwordError}" class="alert alert-danger text-center small border-danger">
+                            <span th:text="${passwordError}"></span>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 fw-bold rounded-pill py-2">Sign Up Now</button>

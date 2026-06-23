@@ -19,9 +19,7 @@ public class UserService {
     }
 
     public void registerUser(UserRegisterDTO registerDTO) {
-        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
-            throw new IllegalArgumentException("Passwords do not match!");
-        }
+
 
         User user = User.builder()
                 .username(registerDTO.getUsername())
@@ -34,4 +32,6 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+
 }

@@ -13,8 +13,4 @@ public class MoviehubApplication {
 		SpringApplication.run(MoviehubApplication.class, args);
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }
