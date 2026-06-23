@@ -12,6 +12,21 @@ Input Validation: Server-side validation for all forms to ensure data integrity 
 
 Modern UI: Responsive design featuring a dark mode with elegant gradient backgrounds.
 
+📄 Application Pages
+The application consists of 6 dynamic web pages:
+
+1.Home (Index)
+
+2.Login
+
+3.Register
+
+4.Movie Catalog
+
+5.Add Movie
+
+6.Edit Movie
+
 🛠 Technology Stack
 Backend: Java 17, Spring Boot 3.4.0, Spring MVC, Spring Data JPA, Spring Security
 
