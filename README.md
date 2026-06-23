@@ -34,12 +34,15 @@ Clone the repository:
 Bash
 git clone https://github.com/mumuntasim/moviehub.git
 Configure the Database:
+
 Open src/main/resources/application.properties and update your MySQL credentials:
 
 Properties
 spring.datasource.username=your_db_username
 spring.datasource.password=your_db_password
+
 Run the Application:
+
 Execute the MoviehubApplication.java main class. Upon the first startup, the application will automatically generate the database schema and populate the initial list of genres.
 
 Access the App:
