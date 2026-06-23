@@ -13,6 +13,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Genre {
 
+    public Genre(String name) {
+        this.name = name;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

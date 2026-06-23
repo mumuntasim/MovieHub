@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -26,4 +27,7 @@ public class MovieAddDTO {
     @NotNull(message = "Release date is required")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
+
+    @NotNull(message = "You must select a genre")
+    private UUID genreId;
 }

@@ -1,6 +1,7 @@
 package com.moviehub.web.movie;
 
 import com.moviehub.model.dto.movie.MovieAddDTO;
+import com.moviehub.repository.genre.GenreRepository;
 import com.moviehub.service.movie.MovieService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,12 @@ import java.util.UUID;
 public class MovieController {
 
     private final MovieService movieService;
+    private final GenreRepository genreRepository; // Добавяме това
 
-    public MovieController(MovieService movieService) {
+    // Добавяме genreRepository в конструктора
+    public MovieController(MovieService movieService, GenreRepository genreRepository) {
         this.movieService = movieService;
+        this.genreRepository = genreRepository;
     }
 
     @GetMapping("/movies")
@@ -34,6 +38,8 @@ public class MovieController {
         if (!model.containsAttribute("movieAddDTO")) {
             model.addAttribute("movieAddDTO", new MovieAddDTO());
         }
+        // Добавяме жанровете към модела, за да ги види Thymeleaf
+        model.addAttribute("allGenres", genreRepository.findAll());
         return "add-movie";
     }
 
